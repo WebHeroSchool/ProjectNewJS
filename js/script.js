@@ -1,7 +1,3 @@
-let num = '0';
-
-let score;
-
 const question1 = {
 	question: 'Вопрос какой-то',
 	correctAnswer: 'a'
@@ -22,26 +18,40 @@ const question4 = {
 	correctAnswer: 'd'
 };
 
-const question = document.getElementById('question');
-
 const q = [question1,question2,question3,question4];
 
-const allQuestions = q.filter((item)=> {
-	return item.question;
-})
-console.log(allQuestions);
-
-buildQuiz =(allQuestions) => {
-	question.innerHTML = allQuestions;
-	question.style.color = 'blue'
+buildQuiz =(q) => {
+	let questions = document.getElementById('question');
+	
+    q.forEach((item) =>{ 
+    	questions.innerHTML=item.question
+    })	
+    
 }
 
-buildQuiz(allQuestions)
+buildQuiz(q);
+
 
 /*q.forEach((item) => {
 	if(item.correctAnswer==='c'){
 		console.log('Верно!')
 	} else {console.log('Не верно!'+'Правильный ответ:'+item.correctAnswer)}
 })
-
 */
+let score = 0;
+
+function showResults() {
+
+q.forEach((item) => {
+	if(item.correctAnswer==='c'){
+		score++
+	} console.log(score)
+})
+
+}
+
+showResults();
+
+let result = document.getElementById('result');
+result.innerHTML = 'Всего верных ответов:' + score;
+
