@@ -22,19 +22,26 @@ const question4 = {
 	correctAnswer: 'd'
 };
 
+const question = document.getElementById('question');
+
 const q = [question1,question2,question3,question4];
 
-buildQuiz = q => {
-	for(let i=0; i<q.length; i++) {
-		console.log(q[i]);
-	}
+const allQuestions = q.filter((item)=> {
+	return item.question;
+})
+console.log(allQuestions);
+
+buildQuiz =(allQuestions) => {
+	question.innerHTML = allQuestions;
+	question.style.color = 'blue'
 }
 
-buildQuiz(q)
+buildQuiz(allQuestions)
 
-q.forEach((item) => {
+/*q.forEach((item) => {
 	if(item.correctAnswer==='c'){
 		console.log('Верно!')
 	} else {console.log('Не верно!'+'Правильный ответ:'+item.correctAnswer)}
 })
 
+*/
