@@ -17,25 +17,24 @@ const question3 = {
 	correctAnswer: 'c'
 };
 
-const arr = [question1,question2];
-
-arr.forEach((item) => {
-	console.log(item.correctAnswer);
-})
-
-arr.unshift(question3);
-
-arr.forEach((item) => {
-	if(item.correctAnswer === 'c') {
-		console.log(item.correctAnswer);
-	}
-})
-
 const question4 = {
 	question:'Ещё вопрос',
-	correctAnswer: '4'
+	correctAnswer: 'd'
 };
 
-newArr = [question1,question2,question3,question4];
+const q = [question1,question2,question3,question4];
 
-console.log(newArr);
+buildQuiz = q => {
+	for(let i=0; i<q.length; i++) {
+		console.log(q[i]);
+	}
+}
+
+buildQuiz(q)
+
+q.forEach((item) => {
+	if(item.correctAnswer==='c'){
+		console.log('Верно!')
+	} else {console.log('Не верно!'+'Правильный ответ:'+item.correctAnswer)}
+})
+
