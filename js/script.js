@@ -20,7 +20,7 @@ const question4 = {
 
 let q = [question1,question2,question3,question4];
 
-let qs = ['Question1','Question2','Question3','Question4'];
+/*let qs = ['Question1','Question2','Question3','Question4'];
 let num = 0;
 
 function buildQuiz(qs){
@@ -32,21 +32,18 @@ function buildQuiz(qs){
 	question.innerHTML = qs[num];
 }
 
-buildQuiz(qs);
+buildQuiz(qs);*/
 
 
-/*buildQuiz =(q) => {
-	
-	let div = document.getElementById(div);
+buildQuiz =(q) => {
 	
     q.forEach((item) =>{ 
     	let questions = document.getElementById('question');
-    	div.innerHTML=item.question
-    })
-    guestions.appendChild(div)	    
+    	question.innerHTML+=item.question
+    }) 
 }
 
-buildQuiz(q);*/
+buildQuiz(q);
 
 
 q.forEach((item) => {
