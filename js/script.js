@@ -18,26 +18,40 @@ const question4 = {
 	correctAnswer: 'd'
 };
 
-const q = [question1,question2,question3,question4];
+let q = [question1,question2,question3,question4];
+
+/*let qs = ['Question1','Question2','Question3','Question4'];
+let num = 0;
+
+function buildQuiz(qs){
+	num++;
+	let question = document.getElementById('question');
+	if(num <= qs.length){
+		num = 0;
+	}
+	question.innerHTML = qs[num];
+}
+
+buildQuiz(qs);*/
+
 
 buildQuiz =(q) => {
-	let questions = document.getElementById('question');
 	
     q.forEach((item) =>{ 
-    	questions.innerHTML=item.question
-    })	
-    
+    	let questions = document.getElementById('question');
+    	question.innerHTML+=item.question
+    }) 
 }
 
 buildQuiz(q);
 
 
-/*q.forEach((item) => {
+q.forEach((item) => {
 	if(item.correctAnswer==='c'){
 		console.log('Верно!')
 	} else {console.log('Не верно!'+'Правильный ответ:'+item.correctAnswer)}
 })
-*/
+
 let score = 0;
 
 function showResults() {
@@ -53,5 +67,5 @@ q.forEach((item) => {
 showResults();
 
 let result = document.getElementById('result');
-result.innerHTML = 'Всего верных ответов:' + score;
+result.innerHTML = ('Всего верных ответов:' + score);
 
