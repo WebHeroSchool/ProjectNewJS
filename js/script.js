@@ -1,7 +1,7 @@
 const question1 = {
 	question: 'Вопрос какой-то',
 	correctAnswer: 'a'
-};1
+};
 
 const question2 = {
 	question:'Другой вопрос',
@@ -19,38 +19,40 @@ const question4 = {
 };
 
 let q = [question1,question2,question3,question4];
-
-/*let qs = ['Question1','Question2','Question3','Question4'];
-let num = 0;
-
-function buildQuiz(qs){
-	num++;
-	let question = document.getElementById('question');
-	if(num <= qs.length){
-		num = 0;
-	}
-	question.innerHTML = qs[num];
-}
-
-buildQuiz(qs);*/
-
+let questions = document.getElementById('question');
 
 buildQuiz =(q) => {
 	
     q.forEach((item) =>{ 
     	let questions = document.getElementById('question');
-    	question.innerHTML+=item.question
+    	question.innerHTML+= ` ${item.question}`
     }) 
 }
 
 buildQuiz(q);
 
+const nextButton = document.getElementById('next');
 
-q.forEach((item) => {
-	if(item.correctAnswer==='c'){
-		console.log('Верно!')
-	} else {console.log('Не верно!'+'Правильный ответ:'+item.correctAnswer)}
-})
+nextButton.addEventListener('click',() => {
+	event.preventDefault();
+	showSlide(numSlide+1);
+});
+
+const previosButton = document.getElementById('previos');
+
+previosButton.addEventListener('click',() => {
+	event.preventDefault();
+	showSlide(numSlide-1); 
+});
+
+const submitButton = document.getElementById('submit');
+
+submitButton.addEventListener('click',() => {
+	event.preventDefault();
+    showResults();
+    let result = document.getElementById('result');
+    result.innerHTML = ('Всего верных ответов:' + score);
+});
 
 let score = 0;
 
@@ -59,13 +61,15 @@ function showResults() {
 q.forEach((item) => {
 	if(item.correctAnswer==='c'){
 		score++
-	} console.log(score)
+	} 
+	console.log(score);
 })
 
 }
 
-showResults();
+let numSlide = 0 ;
 
-let result = document.getElementById('result');
-result.innerHTML = ('Всего верных ответов:' + score);
 
+function showSlide() {
+	console.log(numSlide);
+}
