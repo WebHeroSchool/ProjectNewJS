@@ -32,24 +32,30 @@ buildQuiz =(q) => {
 buildQuiz(q);
 
 let numSlide = 0 ;
-
-function showSlide() {
-	console.log(numSlide);
-}
+let newNumSlide = 0;
 
 const nextButton = document.getElementById('next');
 
 nextButton.addEventListener('click',() => {
 	event.preventDefault();
-	showSlide(numSlide+1);
+	newNumSlide=numSlide+1;
+	showSlide();
 });
 
 const previosButton = document.getElementById('previos');
 
 previosButton.addEventListener('click',() => {
 	event.preventDefault();
-	showSlide(numSlide-1); 
+	newNumSlide=numSlide-1; 
+	showSlide();
 });
+
+function showSlide() {
+	numSlide=newNumSlide;
+	console.log(newNumSlide);
+}
+
+showSlide();
 
 const submitButton = document.getElementById('submit');
 
