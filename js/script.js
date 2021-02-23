@@ -31,6 +31,12 @@ buildQuiz =(q) => {
 
 buildQuiz(q);
 
+let numSlide = 0 ;
+
+function showSlide() {
+	console.log(numSlide);
+}
+
 const nextButton = document.getElementById('next');
 
 nextButton.addEventListener('click',() => {
@@ -67,9 +73,3 @@ q.forEach((item) => {
 
 }
 
-let numSlide = 0 ;
-
-
-function showSlide() {
-	console.log(numSlide);
-}
