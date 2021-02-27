@@ -3,7 +3,7 @@ const question1 = {
 	answer1:'b',
 	answer2:'c',
 	answer3:'d',
-	correctAnswer: 'a'
+	answer4: 'a'
 };
 
 const question2 = {
@@ -11,7 +11,7 @@ const question2 = {
 	answer1:'f',
 	answer2:'g',
 	answer3:'h',
-	correctAnswer: 'b'
+	answer4: 'b'
 };
 
 const question3 = {
@@ -19,7 +19,7 @@ const question3 = {
 	answer1:'s',
 	answer2:'m',
 	answer3:'n',
-	correctAnswer: 'c'
+	answer4: 'c'
 };
 
 const question4 = {
@@ -27,26 +27,29 @@ const question4 = {
 	answer1:'t',
 	answer2:'y',
 	answer3:'u',
-	correctAnswer: 'd'
+	answer4: 'd'
 };
 
 let q = [question1,question2,question3,question4];
+let questions = document.getElementById('question');
+let answers = document.getElementById ('answer');
 let num = 0;
 
-buildQuiz =(q) => {
-	num ++
-	
-    q.forEach((item,num) =>{ 
-    	let questions = document.getElementById('question');
-    	let anwers = document.getElementById ('answer');
+num++
 
-         if (num <= q.length) {
-         	num = 0;
-         }
-    	question.innerHTML+= ` ${item.question}`
-    	answer.innerHTML+= item.answer1 + item.answer2 + item.answer3 + item.correctAnswer+item.answer4
-       
-    }) 
+buildQuiz =(q) => {
+	
+    if (num = q.length) {
+        num = 0;
+    }
+    question.innerHTML= q[num].question ;
+
+    for (let i=0; i<4; i++) {
+    	const input = document.createElement('İnput');
+    	input.type ='radio';
+        input.innerHTML = q[num][`answer(i+1)`];
+    	answers.appendChild(input);
+    }       
 }
 
 buildQuiz(q);
@@ -89,13 +92,16 @@ submitButton.addEventListener('click',() => {
 let score = 0;
 
 function showResults() {
+	let correctAnswer1 = question1.answer3;
+	let correctAnswer2 = question2.answer4;
+	let correctAnswer3 = question3.answer1;
+	let correctAnswer4 = question4.answer2;
 
-q.forEach((item) => {
-	if(item.correctAnswer==='c'){
-		score++
-	} 
+    for ( let i=0;i<4;i++) {
+	    if(`input[question(i+1).answer(i+1)]:checked`==='correctAnswer(i+1)') {
+		    score++
+	    } 
 	console.log(score);
-})
-
+    }
 }
 
