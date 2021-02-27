@@ -32,7 +32,10 @@ const question4 = {
 
 let q = [question1,question2,question3,question4];
 let questions = document.getElementById('question');
-let answers = document.getElementById ('answer');
+let answers1 = document.getElementById ('answer1');
+let answers2 = document.getElementById ('answer2');
+let answers3 = document.getElementById ('answer3');
+let answers4 = document.getElementById ('answer4')
 let num = 0;
 
 num++
@@ -42,14 +45,38 @@ buildQuiz =(q) => {
     if (num = q.length) {
         num = 0;
     }
-    question.innerHTML= q[num].question ;
+    questions.innerHTML= q[num].question ;
 
-    for (let i=0; i<4; i++) {
+    const input1 = document.createElement('input1')
+
+    input1.type = 'radio';
+    input1.innerHTML = q[num].answer1;
+    answers1.appendChild(input1);
+
+    const input2 = document.createElement('input2')
+
+    input2.type = 'radio';
+    input2.innerHTML = q[num].answer2;
+    answers2.appendChild(input2);
+
+    const input3 = document.createElement('input3')
+
+    input3.type = 'radio';
+    input3.innerHTML = q[num].answer3;
+    answers3.appendChild(input3);
+
+    const input4 = document.createElement('input4')
+
+    input4.type = 'radio';
+    input4.innerHTML = q[num].answer4;
+    answers4.appendChild(input4);
+
+  /*  for (let i=0; i<4; i++) {
     	const input = document.createElement('İnput');
     	input.type ='radio';
-        input.innerHTML = q[num][`answer(i+1)`];
+        input.innerHTML = q[num][`answer${i+1}`];
     	answers.appendChild(input);
-    }       
+    }       */
 }
 
 buildQuiz(q);
@@ -98,9 +125,12 @@ function showResults() {
 	let correctAnswer4 = question4.answer2;
 
     for ( let i=0;i<4;i++) {
-	    if(`input[question(i+1).answer(i+1)]:checked`==='correctAnswer(i+1)') {
+	    if(`input[question${i+1}][answer${i+1}]:checked` === '[`correctAnswer${i+1}`]') {
 		    score++
+
 	    } 
+console.log(`input[question${i+1}][answer${i+1}]:checked`);
+console.log(`correctAnswer${i+1}`);
 	console.log(score);
     }
 }
