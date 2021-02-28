@@ -31,23 +31,66 @@ const question4 = {
 };
 
 let q = [question1,question2,question3,question4];
-let questions = document.getElementById('question');
+
+let questions = document.getElementById('question'); 
+
 let answers1 = document.getElementById ('answer1');
 let answers2 = document.getElementById ('answer2');
 let answers3 = document.getElementById ('answer3');
-let answers4 = document.getElementById ('answer4')
+let answers4 = document.getElementById ('answer4');
+
+let userAnser;
+
 let num = 0;
 
 num++
+
+const chooseButton1 = document.getElementById('choose1');
+
+chooseButton1.addEventListener('click',() => {
+	event.preventDefault();
+	 userAnser = q[num].answer1;
+});
+
+const chooseButton2 = document.getElementById('choose2');
+
+chooseButton2.addEventListener('click',() => {
+	event.preventDefault();
+	 userAnser = q[num].answer2;
+});
+
+const chooseButton3 = document.getElementById('choose3');
+
+chooseButton3.addEventListener('click',() => {
+	event.preventDefault();
+	 userAnser = q[num].answer3;
+});
+
+const chooseButton4 = document.getElementById('choose4');
+
+chooseButton4.addEventListener('click',() => {
+	event.preventDefault();
+	 userAnser = q[num].answer4;
+});
+
+
 
 buildQuiz =(q) => {
 	
     if (num = q.length) {
         num = 0;
     }
-    questions.innerHTML= q[num].question ;
+    questions.innerHTML= q[num].question;
+    answers1.innerHTML = q[num].answer1;
+    answers2.innerHTML = q[num].answer2; 
+    answers3.innerHTML = q[num].answer3;
+    answers4.innerHTML = q[num].answer4;
+}
 
-    const input1 = document.createElement('input1')
+buildQuiz(q);
+
+
+    /*const input1 = document.createElement('input1')
 
     input1.type = 'radio';
     input1.innerHTML = q[num].answer1;
@@ -70,16 +113,14 @@ buildQuiz =(q) => {
     input4.type = 'radio';
     input4.innerHTML = q[num].answer4;
     answers4.appendChild(input4);
-
+*/
   /*  for (let i=0; i<4; i++) {
     	const input = document.createElement('İnput');
     	input.type ='radio';
         input.innerHTML = q[num][`answer${i+1}`];
     	answers.appendChild(input);
     }       */
-}
 
-buildQuiz(q);
 
 let numSlide = 0 ;
 let newNumSlide = 0;
@@ -124,7 +165,13 @@ function showResults() {
 	let correctAnswer3 = question3.answer1;
 	let correctAnswer4 = question4.answer2;
 
-    for ( let i=0;i<4;i++) {
+	for ( let i=0;i<4;i++) {
+		if (userAnser = [`correctAnswer${i+1}`] )
+			score++
+	}
+
+}	
+/*    for ( let i=0;i<4;i++) {
 	    if(`input[question${i+1}][answer${i+1}]:checked` === '[`correctAnswer${i+1}`]') {
 		    score++
 
@@ -132,6 +179,6 @@ function showResults() {
 console.log(`input[question${i+1}][answer${i+1}]:checked`);
 console.log(`correctAnswer${i+1}`);
 	console.log(score);
-    }
-}
+    }*/
+
 
