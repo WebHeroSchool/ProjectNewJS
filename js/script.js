@@ -52,7 +52,9 @@ const chooseButton1 = document.getElementById('choose1');
 chooseButton1.addEventListener('click',() => {
 	event.preventDefault();
 	userAnswer[num] = q[num].answer1;
-	 
+	console.log(userAnswer[num]);
+	console.log(userAnswer);
+	noneButton()
 });
 
 const chooseButton2 = document.getElementById('choose2');
@@ -60,13 +62,19 @@ const chooseButton2 = document.getElementById('choose2');
 chooseButton2.addEventListener('click',() => {
 	event.preventDefault();
 	userAnswer[num] = q[num].answer2;
+	console.log(userAnswer[num]);
+	console.log(userAnswer);
+	noneButton();
 });
 
 const chooseButton3 = document.getElementById('choose3');
 
 chooseButton3.addEventListener('click',() => {
 	event.preventDefault();
-	userAnswer[num] = q[num].answer3;	
+	userAnswer[num] = q[num].answer3;
+	console.log(userAnswer[num]);
+	console.log(userAnswer);
+	noneButton();	
 });
 
 const chooseButton4 = document.getElementById('choose4');
@@ -74,6 +82,9 @@ const chooseButton4 = document.getElementById('choose4');
 chooseButton4.addEventListener('click',() => {
 	event.preventDefault();
 	userAnswer[num] = q[num].answer4;
+	console.log(userAnswer[num]);
+	console.log(userAnswer);
+	noneButton();
 });
 
 buildQuiz =(q) => {   
@@ -81,7 +92,7 @@ buildQuiz =(q) => {
         num = 0;
     };
 
-    questions.innerHTML= q[num].question;
+    questions.innerHTML = q[num].question;
     answers1.innerHTML = q[num].answer1;
     answers2.innerHTML = q[num].answer2; 
     answers3.innerHTML = q[num].answer3;
@@ -98,6 +109,7 @@ nextButton.addEventListener('click',() => {
 	num++;
 	newNumSlide=numSlide+1;
 	showSlide();
+	onButton();
 
 });
 
@@ -108,6 +120,7 @@ previosButton.addEventListener('click',() => {
 	newNumSlide=numSlide-1;
 	num--; 
 	showSlide();
+	noneButton();
 });
 
 const submitButton = document.getElementById('submit');
@@ -151,6 +164,8 @@ function checkResults() {
    for (num=0;num<4;num++) {
 	    if (userAnswer[num] === correctAnswer[num]) {
 		    score++ ;
+		console.log(userAnswer);
+		console.log(correctAnswer) ;  
 	    }
     }
 };
@@ -162,3 +177,17 @@ function showResults() {
     
 };
 
+let button = [chooseButton1,chooseButton2,chooseButton3,chooseButton4];
+
+function noneButton() {
+	button.forEach((item) => {
+		item.classList.add('nonactive');
+	})
+
+};
+
+function onButton() {
+	button.forEach((item) => {
+		item.classList.remove('nonactive');
+	})
+};

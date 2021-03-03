@@ -3,3 +3,7 @@
     margin-bottom: 50px;
 }
 
+.nonactive {
+  display: none;
+}
+
