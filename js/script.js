@@ -47,7 +47,13 @@ let num = 0;
 
 let userAnswer = [0,0,0,0];
 
+
 const chooseButton1 = document.getElementById('choose1');
+const chooseButton2 = document.getElementById('choose2');
+const chooseButton3 = document.getElementById('choose3');
+const chooseButton4 = document.getElementById('choose4');
+
+let button = ['chooseButton1','chooseButton2','chooseButton3','chooseButton4'];
 
 chooseButton1.addEventListener('click',() => {
 	event.preventDefault();
@@ -57,7 +63,7 @@ chooseButton1.addEventListener('click',() => {
 	noneButton()
 });
 
-const chooseButton2 = document.getElementById('choose2');
+
 
 chooseButton2.addEventListener('click',() => {
 	event.preventDefault();
@@ -67,7 +73,7 @@ chooseButton2.addEventListener('click',() => {
 	noneButton();
 });
 
-const chooseButton3 = document.getElementById('choose3');
+
 
 chooseButton3.addEventListener('click',() => {
 	event.preventDefault();
@@ -77,7 +83,7 @@ chooseButton3.addEventListener('click',() => {
 	noneButton();	
 });
 
-const chooseButton4 = document.getElementById('choose4');
+
 
 chooseButton4.addEventListener('click',() => {
 	event.preventDefault();
@@ -177,9 +183,9 @@ function showResults() {
     
 };
 
-let button = [chooseButton1,chooseButton2,chooseButton3,chooseButton4];
 
-function noneButton() {
+
+/*function noneButton() {
 	button.forEach((item) => {
 		item.classList.add('nonactive');
 	})
@@ -190,4 +196,26 @@ function onButton() {
 	button.forEach((item) => {
 		item.classList.remove('nonactive');
 	})
+};*/
+
+
+/*function noneButton() {
+	console.log(button);
+	button.forEach((item) => {
+		item.removeEventListener('click');
+	})
+	
+};
+
+function onButton() {
+	button.forEach((item) => {
+		item.addEventListener('click');
+	})    
+};*/
+
+function noneButton() {
+	chooseButton1.removeEventListener('click',());
+    chooseButton2.removeEventListener('click',());
+    chooseButton3.removeEventListener('click',());
+    chooseButton4.removeEventListener('click',());
 };
