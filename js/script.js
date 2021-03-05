@@ -53,7 +53,7 @@ const chooseButton2 = document.getElementById('choose2');
 const chooseButton3 = document.getElementById('choose3');
 const chooseButton4 = document.getElementById('choose4');
 
-let button = ['chooseButton1','chooseButton2','chooseButton3','chooseButton4'];
+let button = [chooseButton1,chooseButton2,chooseButton3,chooseButton4];
 
 chooseButton1.addEventListener('click',() => {
 	event.preventDefault();
@@ -76,6 +76,7 @@ chooseButton2.addEventListener('click',() => {
 
 
 chooseButton3.addEventListener('click',() => {
+	console.log(chooseButton3);
 	event.preventDefault();
 	userAnswer[num] = q[num].answer3;
 	console.log(userAnswer[num]);
@@ -208,15 +209,14 @@ function noneButton() {
 	console.log(button);
 
 	button.forEach((item) => {
-		item.removeEventListener('click',userAnswer);
+		item.removeEventListener('click',noneButton);
 		console.log(item);
 	})
-	
 };
 
 function onButton() {
 	button.forEach((item) => {
-		item.addEventListener('click',item);
+		item.addEventListener('click',onButton);
 	})    
 };
 
