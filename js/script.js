@@ -69,7 +69,7 @@ chooseButton2.addEventListener('click',() => {
 	event.preventDefault();
 	userAnswer[num] = q[num].answer2;
 	console.log(userAnswer[num]);
-	console.log(userAnswer);
+	console.log(correctAnswer[num]);
 	noneButton();
 });
 
@@ -80,6 +80,11 @@ chooseButton3.addEventListener('click',() => {
 	userAnswer[num] = q[num].answer3;
 	console.log(userAnswer[num]);
 	console.log(userAnswer);
+	if (userAnswer[num] === correctAnswer[num]){
+		answer3.style.color = 'green' ;
+	} else {
+		answer3.style.color = 'red';
+	}
 	noneButton();	
 });
 
@@ -199,23 +204,25 @@ function onButton() {
 };*/
 
 
-/*function noneButton() {
+function noneButton() {
 	console.log(button);
+
 	button.forEach((item) => {
-		item.removeEventListener('click');
+		item.removeEventListener('click',userAnswer);
+		console.log(item);
 	})
 	
 };
 
 function onButton() {
 	button.forEach((item) => {
-		item.addEventListener('click');
+		item.addEventListener('click',item);
 	})    
-};*/
-
-function noneButton() {
-	chooseButton1.removeEventListener('click',());
-    chooseButton2.removeEventListener('click',());
-    chooseButton3.removeEventListener('click',());
-    chooseButton4.removeEventListener('click',());
 };
+
+/*function noneButton() {
+	chooseButton1.removeEventListener('click',userAnswer);
+    chooseButton2.removeEventListener('click',userAnswer);
+    chooseButton3.removeEventListener('click',userAnswer);
+    chooseButton4.removeEventListener('click',userAnswer);
+};*/
