@@ -58,8 +58,13 @@ let button = [chooseButton1,chooseButton2,chooseButton3,chooseButton4];
 chooseButton1.addEventListener('click',() => {
 	event.preventDefault();
 	userAnswer[num] = q[num].answer1;
-	console.log(userAnswer[num]);
-	console.log(userAnswer);
+
+	if (userAnswer[num] === correctAnswer[num]) {
+        answer1.style.color = 'green';
+	    } else {
+	    	answer1.style.color = 'red';
+	};
+
 	noneButton()
 });
 
@@ -68,24 +73,28 @@ chooseButton1.addEventListener('click',() => {
 chooseButton2.addEventListener('click',() => {
 	event.preventDefault();
 	userAnswer[num] = q[num].answer2;
-	console.log(userAnswer[num]);
-	console.log(correctAnswer[num]);
+
+	if (userAnswer[num] === correctAnswer[num]) {
+        answer2.style.color = 'green';
+	    } else {
+	    	answer2.style.color = 'red';
+	};
+
 	noneButton();
 });
 
 
 
 chooseButton3.addEventListener('click',() => {
-	console.log(chooseButton3);
 	event.preventDefault();
 	userAnswer[num] = q[num].answer3;
-	console.log(userAnswer[num]);
-	console.log(userAnswer);
-	if (userAnswer[num] === correctAnswer[num]){
-		answer3.style.color = 'green' ;
-	} else {
-		answer3.style.color = 'red';
-	}
+	 
+    if (userAnswer[num] === correctAnswer[num]) {
+        answer3.style.color = 'green';
+	    } else {
+	    	answer3.style.color = 'red';
+	};
+
 	noneButton();	
 });
 
@@ -94,8 +103,13 @@ chooseButton3.addEventListener('click',() => {
 chooseButton4.addEventListener('click',() => {
 	event.preventDefault();
 	userAnswer[num] = q[num].answer4;
-	console.log(userAnswer[num]);
-	console.log(userAnswer);
+	
+    if (userAnswer[num] === correctAnswer[num]) {
+        answer4.style.color = 'green';
+	    } else {
+	    	answer4.style.color = 'red';
+	};
+
 	noneButton();
 });
 
@@ -189,40 +203,23 @@ function showResults() {
     
 };
 
-
-
-/*function noneButton() {
-	button.forEach((item) => {
-		item.classList.add('nonactive');
-	})
-
-};
-
-function onButton() {
-	button.forEach((item) => {
-		item.classList.remove('nonactive');
-	})
-};*/
-
-
 function noneButton() {
 	console.log(button);
 
 	button.forEach((item) => {
-		item.removeEventListener('click',noneButton);
+		item.setAttribute('disabled',true);
 		console.log(item);
 	})
 };
 
 function onButton() {
 	button.forEach((item) => {
-		item.addEventListener('click',onButton);
-	})    
+		item.removeAttribute('disabled',true);
+	}) 
+
+	answer1.style.color =  'black' ;
+	answer2.style.color =  'black' ;
+	answer3.style.color =  'black' ;
+	answers4.style.color =  'black' ;
 };
 
-/*function noneButton() {
-	chooseButton1.removeEventListener('click',userAnswer);
-    chooseButton2.removeEventListener('click',userAnswer);
-    chooseButton3.removeEventListener('click',userAnswer);
-    chooseButton4.removeEventListener('click',userAnswer);
-};*/
