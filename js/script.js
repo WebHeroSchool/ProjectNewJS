@@ -74,11 +74,11 @@ startButton.addEventListener('click',() => {
 })
 
 let form = document.querySelector('.form');
-let name = form.querySelector('add');
+let name = form.elements['name'];
 
-form.addEventListener('submit',function (event){
+form.addEventListener('submit',(event) => {
     console.log(name.value);
-    let regex =/^[A-Za-z]{2,10}$/;
+    let regex =/^[A-Z{1}a-z]{2,10}$/;
     name.classList.remove('error'); 
 
     if (!regex.test(name.value)){
@@ -90,7 +90,7 @@ form.addEventListener('submit',function (event){
     	error.className = 'error_block';
     	error.style.color = 'red';
     	error.innerHTML = 'Укажите имя правильно';
-    	name.parentElement.insertBtfore(error,name);
+    	name.parentElement.insertBefore(error,name);
     }
 })
 
