@@ -55,12 +55,66 @@ const chooseButton4 = document.getElementById('choose4');
 
 let button = [chooseButton1,chooseButton2,chooseButton3,chooseButton4];
 
+const nextButton = document.getElementById('next');
+const previosButton = document.getElementById('previos');
+const submitButton = document.getElementById('submit');
+const startButton = document.getElementById('start');
+
+nextButton.style.display = 'none';
+previosButton.style.display = 'none';
+chooseButton1.style.display = 'none';
+chooseButton2.style.display = 'none';
+chooseButton3.style.display = 'none';
+chooseButton4.style.display = 'none';
+submitButton.style.display = 'none';
+
+startButton.addEventListener('click',() => {
+	event.preventDefault();
+	startGame();
+})
+
+let form = document.querySelector('.form');
+let name = form.querySelector('add');
+
+form.addEventListener('submit',function (event){
+    console.log(name.value);
+    let regex =/^[A-Za-z]{2,10}$/;
+    name.classList.remove('error'); 
+
+    if (!regex.test(name.value)){
+    	event.preventDefault();
+    	console.log('error');
+    	name.classList.add('error');
+
+    	let error = document.createElement('div');
+    	error.className = 'error_block';
+    	error.style.color = 'red';
+    	error.innerHTML = 'Укажите имя правильно';
+    	name.parentElement.insertBtfore(error,name);
+    }
+})
+
+
+
+function startGame() {
+
+    form.style.display = 'none';
+    startButton.style.display = 'none';
+	nextButton.style.display = 'block';
+    previosButton.style.display = 'block';
+    chooseButton1.style.display = 'block';
+    chooseButton2.style.display = 'block';
+    chooseButton3.style.display = 'block';
+    chooseButton4.style.display = 'block';
+    submitButton.style.display = 'block';
+
+
 chooseButton1.addEventListener('click',() => {
 	event.preventDefault();
 	userAnswer[num] = q[num].answer1;
 
 	if (userAnswer[num] === correctAnswer[num]) {
-        answer1.style.color = 'green';
+        answer1.style.color = 'Lightgreen';
 	    } else {
 	    	answer1.style.color = 'red';
 	};
@@ -75,7 +129,7 @@ chooseButton2.addEventListener('click',() => {
 	userAnswer[num] = q[num].answer2;
 
 	if (userAnswer[num] === correctAnswer[num]) {
-        answer2.style.color = 'green';
+        answer2.style.color = 'Lightgreen';
 	    } else {
 	    	answer2.style.color = 'red';
 	};
@@ -90,7 +144,7 @@ chooseButton3.addEventListener('click',() => {
 	userAnswer[num] = q[num].answer3;
 	 
     if (userAnswer[num] === correctAnswer[num]) {
-        answer3.style.color = 'green';
+        answer3.style.color = 'Lightgreen';
 	    } else {
 	    	answer3.style.color = 'red';
 	};
@@ -105,7 +159,7 @@ chooseButton4.addEventListener('click',() => {
 	userAnswer[num] = q[num].answer4;
 	
     if (userAnswer[num] === correctAnswer[num]) {
-        answer4.style.color = 'green';
+        answer4.style.color = 'Lightgreen';
 	    } else {
 	    	answer4.style.color = 'red';
 	};
@@ -128,7 +182,7 @@ buildQuiz =(q) => {
 let numSlide = 0 ;
 let newNumSlide = 0;
 
-const nextButton = document.getElementById('next');
+
 
 nextButton.addEventListener('click',() => {
 	event.preventDefault();
@@ -139,7 +193,7 @@ nextButton.addEventListener('click',() => {
 
 });
 
-const previosButton = document.getElementById('previos');
+
 
 previosButton.addEventListener('click',() => {
 	event.preventDefault();
@@ -149,7 +203,7 @@ previosButton.addEventListener('click',() => {
 	noneButton();
 });
 
-const submitButton = document.getElementById('submit');
+
 
 function showSlide() {
     numSlide=newNumSlide;
@@ -157,14 +211,14 @@ function showSlide() {
 	if (numSlide === 0) {
 		previosButton.style.display = 'none';
 	} else {
-		previosButton.style.display = 'inline-block';
+		previosButton.style.display = 'block';
 	};
 
     if (numSlide ===  q.length -1) {
         nextButton.style.display = 'none';
-        submitButton.style.display = 'inline-block';
+        submitButton.style.display = 'block';
     } else {
-    	nextButton.style.display = 'inline-block';
+    	nextButton.style.display = 'block';
     	submitButton.style.display = 'none';
     }
 
@@ -221,5 +275,7 @@ function onButton() {
 	answer2.style.color =  'black' ;
 	answer3.style.color =  'black' ;
 	answers4.style.color =  'black' ;
+};
+
 };
 

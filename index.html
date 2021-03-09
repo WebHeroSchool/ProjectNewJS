@@ -6,20 +6,27 @@
     <title>Новый модуль JS</title>
   </head>
   <body>
+    <div class="beginning">
+      <form class="form">
+        <input id ='name' type="text" name="name" placeholder="Имя" required />
+        <button id='add' type="submit">Добавить</button>
+      </form>
+      <button id ='start' class="startbtn">Start game</button>
+    </div>
     <div id = 'slides' class="slide">
     <h1 id = 'question'></h1>
     <h2 id="answer1"></h2>
-    <button id='choose1'>Choose</button>
+    <button id='choose1' class="choose">Choose</button>
     <h2 id="answer2"></h2>
-    <button id='choose2'>Choose</button>
+    <button id='choose2' class="choose">Choose</button>
     <h2 id="answer3"></h2>
-    <button id='choose3'>Choose</button>
+    <button id='choose3' class="choose">Choose</button>
     <h2 id="answer4"></h2>
-    <button id='choose4'>Choose</button>
+    <button id='choose4' class="choose">Choose</button>
     </div>
-    <button id ='next'>Next Question</button>
-    <button id ='previos'>Previos Question</button>
-    <button id ='submit'>Show result</button>
+    <button id ='next' class="btn">Next Question</button>
+    <button id ='previos' class="btn">Previos Question</button>
+    <button id ='submit' class="result">Show result</button>
     <h2 id = 'result'></h2>
     <script src="js/script.js"> </script> 
   </body>
