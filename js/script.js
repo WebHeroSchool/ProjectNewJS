@@ -78,7 +78,7 @@ let name = form.elements['name'];
 
 form.addEventListener('submit',(event) => {
     console.log(name.value);
-    let regex =/^[A-Z{1}a-z]{2,10}$/;
+    let regex =/^[A-Z]{1}[a-z]{2,10}$/;
     name.classList.remove('error'); 
 
     if (!regex.test(name.value)){
