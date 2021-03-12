@@ -1,7 +1,7 @@
 const slides = document.getElementById ('slides');
 
 const question1 = {
-	question: 'Вопрос какой-то',
+	question: 'Вопрос первый',
 	answer1:'b',
 	answer2:'c',
 	answer3:'d',
@@ -9,7 +9,7 @@ const question1 = {
 };
 
 const question2 = {
-	question:'Другой вопрос',
+	question:'Другой вопрос второй',
 	answer1:'f',
 	answer2:'g',
 	answer3:'h',
@@ -17,7 +17,7 @@ const question2 = {
 };
 
 const question3 = {
-	question:'Ещё вопрос',
+	question:'Ещё вопрос третий',
 	answer1:'s',
 	answer2:'m',
 	answer3:'n',
@@ -25,7 +25,7 @@ const question3 = {
 };
 
 const question4 = {
-	question:'Ещё один вопрос',
+	question:'Ещё один вопрос четвертый',
 	answer1:'t',
 	answer2:'y',
 	answer3:'u',
@@ -208,7 +208,7 @@ buildQuiz =(q) => {
     answers3.innerHTML = q[num].answer3;
     answers4.innerHTML = q[num].answer4;
 
-    let timer = setTimeout(() =>{
+    timer = setTimeout(() =>{
     	noneButton();showResults();
     	restartButton.style.display = 'block';
     },10000);
@@ -273,13 +273,14 @@ let correctAnswer4 = question4.answer2;
 let correctAnswer = [correctAnswer1,correctAnswer2,correctAnswer3,correctAnswer4];
 
 function checkResults() {   
-   for (num=0;num<4;num++) {
+   /*for (num=0;num<4;num++) {
 	    if (userAnswer[num] === correctAnswer[num]) {
-		    score++ ;
+		    score++ ;*/
 		console.log(userAnswer);
-		console.log(correctAnswer) ;  
-	    }
-    }
+		console.log(correctAnswer);
+		console.log(score); 
+	    score = userAnswer.filter((item,num) => item == correctAnswer[num]).length;
+    
 };
 
 function showResults() {
@@ -291,7 +292,6 @@ function showResults() {
 
 function noneButton() {
     clearTimeout(timer);
-    console.log(timer);
 	button.forEach((item) => {
 		item.setAttribute('disabled',true);
 	})
