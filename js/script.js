@@ -29,7 +29,7 @@ const question4 = {
 	answer1:'t',
 	answer2:'y',
 	answer3:'u',
-	answer4: 'd'
+	answer4: 'k'
 };
 
 let q = [question1,question2,question3,question4];
@@ -43,7 +43,7 @@ let answers4 = document.getElementById ('answer4');
 
 
 let num = 0;
-
+let score = 0;
 
 let userAnswer = [0,0,0,0];
 
@@ -59,6 +59,9 @@ const nextButton = document.getElementById('next');
 const previosButton = document.getElementById('previos');
 const submitButton = document.getElementById('submit');
 const startButton = document.getElementById('start');
+const restartButton = document.getElementById('restart');
+let form = document.querySelector('.form');
+
 
 nextButton.style.display = 'none';
 previosButton.style.display = 'none';
@@ -67,13 +70,14 @@ chooseButton2.style.display = 'none';
 chooseButton3.style.display = 'none';
 chooseButton4.style.display = 'none';
 submitButton.style.display = 'none';
+restartButton.style.display = 'none';
 
 startButton.addEventListener('click',() => {
 	event.preventDefault();
 	startGame();
 })
 
-let form = document.querySelector('.form');
+let timer = 0;
 let name = form.elements['name'];
 
 form.addEventListener('submit',(event) => {
@@ -92,12 +96,37 @@ form.addEventListener('submit',(event) => {
     	error.innerHTML = 'Укажите имя правильно';
     	name.parentElement.insertBefore(error,name);
     }
-})
+});
 
+function onButton() {
+	button.forEach((item) => {
+		item.removeAttribute('disabled',true);
+	}) 
+
+	answer1.style.color =  'black' ;
+	answer2.style.color =  'black' ;
+	answer3.style.color =  'black' ;
+	answers4.style.color =  'black' ;
+};
+
+
+restartButton.addEventListener ('click',() => {
+	event.preventDefault();
+	startGame();
+	onButton();
+	result.innerHTML = ' ';
+	restartButton.style.display = 'none';
+	userAnswer = [0,0,0,0];
+	num = 0;
+	score = 0;
+    console.log(timer);
+    console.log(score);
+    console.log(userAnswer);
+});
 
 
 function startGame() {
-
+clearTimeout(timer);
     form.style.display = 'none';
     startButton.style.display = 'none';
 	nextButton.style.display = 'block';
@@ -167,7 +196,8 @@ chooseButton4.addEventListener('click',() => {
 	noneButton();
 });
 
-buildQuiz =(q) => {   
+buildQuiz =(q) => {  
+    
     if (num === q.length) {
         num = 0;
     };
@@ -177,12 +207,16 @@ buildQuiz =(q) => {
     answers2.innerHTML = q[num].answer2; 
     answers3.innerHTML = q[num].answer3;
     answers4.innerHTML = q[num].answer4;
+
+    let timer = setTimeout(() =>{
+    	noneButton();showResults();
+    	restartButton.style.display = 'block';
+    },10000);
+
 };
 
 let numSlide = 0 ;
 let newNumSlide = 0;
-
-
 
 nextButton.addEventListener('click',() => {
 	event.preventDefault();
@@ -238,8 +272,6 @@ let correctAnswer4 = question4.answer2;
 
 let correctAnswer = [correctAnswer1,correctAnswer2,correctAnswer3,correctAnswer4];
 
-let score = 0;
-
 function checkResults() {   
    for (num=0;num<4;num++) {
 	    if (userAnswer[num] === correctAnswer[num]) {
@@ -258,24 +290,12 @@ function showResults() {
 };
 
 function noneButton() {
-	console.log(button);
-
+    clearTimeout(timer);
+    console.log(timer);
 	button.forEach((item) => {
 		item.setAttribute('disabled',true);
-		console.log(item);
 	})
 };
 
-function onButton() {
-	button.forEach((item) => {
-		item.removeAttribute('disabled',true);
-	}) 
-
-	answer1.style.color =  'black' ;
-	answer2.style.color =  'black' ;
-	answer3.style.color =  'black' ;
-	answers4.style.color =  'black' ;
-};
 
 };
-
