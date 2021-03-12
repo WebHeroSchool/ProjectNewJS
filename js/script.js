@@ -41,12 +41,10 @@ let answers2 = document.getElementById ('answer2');
 let answers3 = document.getElementById ('answer3');
 let answers4 = document.getElementById ('answer4');
 
-
 let num = 0;
 let score = 0;
 
 let userAnswer = [0,0,0,0];
-
 
 const chooseButton1 = document.getElementById('choose1');
 const chooseButton2 = document.getElementById('choose2');
@@ -61,7 +59,6 @@ const submitButton = document.getElementById('submit');
 const startButton = document.getElementById('start');
 const restartButton = document.getElementById('restart');
 let form = document.querySelector('.form');
-
 
 nextButton.style.display = 'none';
 previosButton.style.display = 'none';
@@ -101,14 +98,12 @@ form.addEventListener('submit',(event) => {
 function onButton() {
 	button.forEach((item) => {
 		item.removeAttribute('disabled',true);
-	}) 
-
+	});
 	answer1.style.color =  'black' ;
 	answer2.style.color =  'black' ;
 	answer3.style.color =  'black' ;
 	answers4.style.color =  'black' ;
 };
-
 
 restartButton.addEventListener ('click',() => {
 	event.preventDefault();
@@ -119,14 +114,10 @@ restartButton.addEventListener ('click',() => {
 	userAnswer = [0,0,0,0];
 	num = 0;
 	score = 0;
-    console.log(timer);
-    console.log(score);
-    console.log(userAnswer);
 });
 
-
 function startGame() {
-clearTimeout(timer);
+    clearTimeout(timer);
     form.style.display = 'none';
     startButton.style.display = 'none';
 	nextButton.style.display = 'block';
@@ -138,164 +129,144 @@ clearTimeout(timer);
     submitButton.style.display = 'block';
 
 
-chooseButton1.addEventListener('click',() => {
-	event.preventDefault();
-	userAnswer[num] = q[num].answer1;
+    chooseButton1.addEventListener('click',() => {
+	    event.preventDefault();
+	    userAnswer[index] = q[index].answer1;
 
-	if (userAnswer[num] === correctAnswer[num]) {
-        answer1.style.color = 'Lightgreen';
-	    } else {
-	    	answer1.style.color = 'red';
-	};
+	    if (userAnswer[index] === correctAnswer[index]) {
+            answer1.style.color = 'Lightgreen';
+	        } else {
+	    	    answer1.style.color = 'red';
+	    };
+	    noneButton()
+    });
 
-	noneButton()
-});
+    chooseButton2.addEventListener('click',() => {
+	    event.preventDefault();
+	    userAnswer[index] = q[index].answer2;
 
+	    if (userAnswer[index] === correctAnswer[index]) {
+            answer2.style.color = 'Lightgreen';
+	        } else {
+	    	    answer2.style.color = 'red';
+	    };
+	    noneButton();
+    });
 
-
-chooseButton2.addEventListener('click',() => {
-	event.preventDefault();
-	userAnswer[num] = q[num].answer2;
-
-	if (userAnswer[num] === correctAnswer[num]) {
-        answer2.style.color = 'Lightgreen';
-	    } else {
-	    	answer2.style.color = 'red';
-	};
-
-	noneButton();
-});
-
-
-
-chooseButton3.addEventListener('click',() => {
-	event.preventDefault();
-	userAnswer[num] = q[num].answer3;
+    chooseButton3.addEventListener('click',() => {
+	    event.preventDefault();
+	    userAnswer[index] = q[index].answer3;
 	 
-    if (userAnswer[num] === correctAnswer[num]) {
-        answer3.style.color = 'Lightgreen';
-	    } else {
-	    	answer3.style.color = 'red';
-	};
+        if (userAnswer[index] === correctAnswer[index]) {
+            answer3.style.color = 'Lightgreen';
+	        } else {
+	    	    answer3.style.color = 'red';
+	    };
+	    noneButton();	
+    });
 
-	noneButton();	
-});
-
-
-
-chooseButton4.addEventListener('click',() => {
-	event.preventDefault();
-	userAnswer[num] = q[num].answer4;
+    chooseButton4.addEventListener('click',() => {
+	    event.preventDefault();
+	    userAnswer[index] = q[index].answer4;
 	
-    if (userAnswer[num] === correctAnswer[num]) {
-        answer4.style.color = 'Lightgreen';
-	    } else {
-	    	answer4.style.color = 'red';
-	};
+        if (userAnswer[index] === correctAnswer[index]) {
+            answer4.style.color = 'Lightgreen';
+	        } else {
+	    	    answer4.style.color = 'red';
+	    };
+	    noneButton();
+    });
 
-	noneButton();
-});
+    buildQuiz =(q) => {  
 
-buildQuiz =(q) => {  
-    
-    if (num === q.length) {
-        num = 0;
-    };
+         if (num === q.length) {
+            num = 0;
+        };
+        console.log(num);
+        questions.innerHTML = q[index].question;
+        answers1.innerHTML = q[index].answer1;
+        answers2.innerHTML = q[index].answer2; 
+        answers3.innerHTML = q[index].answer3;
+        answers4.innerHTML = q[index].answer4;
 
-    questions.innerHTML = q[num].question;
-    answers1.innerHTML = q[num].answer1;
-    answers2.innerHTML = q[num].answer2; 
-    answers3.innerHTML = q[num].answer3;
-    answers4.innerHTML = q[num].answer4;
-
-    timer = setTimeout(() =>{
+        timer = setTimeout(() =>{
     	noneButton();showResults();
     	restartButton.style.display = 'block';
-    },10000);
+        },10000);
 
-};
+    };
 
-let numSlide = 0 ;
-let newNumSlide = 0;
+    let numSlide = 0 ;
+    let newNumSlide = 0;
 
-nextButton.addEventListener('click',() => {
-	event.preventDefault();
-	num++;
-	newNumSlide=numSlide+1;
-	showSlide();
-	onButton();
+    nextButton.addEventListener('click',() => {
+	    event.preventDefault();
+	    num++;
+	    newNumSlide=numSlide+1;
+	    showSlide();
+	    onButton();
+    });
 
-});
+    previosButton.addEventListener('click',() => {
+	    event.preventDefault();
+	    newNumSlide=numSlide-1;
+	    num--; 
+	    showSlide();
+	    noneButton();
+    });
 
+    function showSlide() {
+        numSlide=newNumSlide;
 
+	    if (numSlide === 0) {
+		    previosButton.style.display = 'none';
+	    } else {
+		    previosButton.style.display = 'block';
+	    };
 
-previosButton.addEventListener('click',() => {
-	event.preventDefault();
-	newNumSlide=numSlide-1;
-	num--; 
-	showSlide();
-	noneButton();
-});
+        if (numSlide ===  q.length -1) {
+            nextButton.style.display = 'none';
+            submitButton.style.display = 'block';
+        } else {
+    	    nextButton.style.display = 'block';
+    	    submitButton.style.display = 'none';
+        }
 
-
-
-function showSlide() {
-    numSlide=newNumSlide;
-
-	if (numSlide === 0) {
-		previosButton.style.display = 'none';
-	} else {
-		previosButton.style.display = 'block';
-	};
-
-    if (numSlide ===  q.length -1) {
-        nextButton.style.display = 'none';
-        submitButton.style.display = 'block';
-    } else {
-    	nextButton.style.display = 'block';
-    	submitButton.style.display = 'none';
+	    buildQuiz(q);
     }
+    showSlide();
 
-	buildQuiz(q);
-}
-showSlide();
+    submitButton.addEventListener('click',() => {
+	    event.preventDefault();
+        showResults();    
+    });
 
-submitButton.addEventListener('click',() => {
-	event.preventDefault();
-    showResults();    
-});
+    let correctAnswer1 = question1.answer3;
+    let correctAnswer2 = question2.answer4;
+    let correctAnswer3 = question3.answer1;
+    let correctAnswer4 = question4.answer2;
 
-let correctAnswer1 = question1.answer3;
-let correctAnswer2 = question2.answer4;
-let correctAnswer3 = question3.answer1;
-let correctAnswer4 = question4.answer2;
+    let correctAnswer = [correctAnswer1,correctAnswer2,correctAnswer3,correctAnswer4];
 
-let correctAnswer = [correctAnswer1,correctAnswer2,correctAnswer3,correctAnswer4];
-
-function checkResults() {   
+    function checkResults() {   
    /*for (num=0;num<4;num++) {
 	    if (userAnswer[num] === correctAnswer[num]) {
 		    score++ ;*/
-		console.log(userAnswer);
-		console.log(correctAnswer);
-		console.log(score); 
-	    score = userAnswer.filter((item,num) => item == correctAnswer[num]).length;
+	    score = userAnswer.filter((item,index) => item == correctAnswer[index]).length;
+    };
+
+    function showResults() {
+	    checkResults();
+	    let result = document.getElementById('result');
+        result.innerHTML = ('Всего верных ответов:' + score);
     
-};
+    };
 
-function showResults() {
-	checkResults();
-	let result = document.getElementById('result');
-    result.innerHTML = ('Всего верных ответов:' + score);
-    
-};
-
-function noneButton() {
-    clearTimeout(timer);
-	button.forEach((item) => {
-		item.setAttribute('disabled',true);
-	})
-};
-
+    function noneButton() {
+        clearTimeout(timer);
+	    button.forEach((item) => {
+		    item.setAttribute('disabled',true);
+	    })
+    };
 
 };
