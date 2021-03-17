@@ -13,7 +13,7 @@ const question2 = {
 	answer1:'f',
 	answer2:'g',
 	answer3:'h',
-	answer4: 'b'
+	answer4: 'x'
 };
 
 const question3 = {
@@ -21,7 +21,7 @@ const question3 = {
 	answer1:'s',
 	answer2:'m',
 	answer3:'n',
-	answer4: 'c'
+	answer4: 'p'
 };
 
 const question4 = {
@@ -107,13 +107,15 @@ function onButton() {
 
 restartButton.addEventListener ('click',() => {
 	event.preventDefault();
-	startGame();
+	/*startGame();
 	onButton();
 	result.innerHTML = ' ';
 	restartButton.style.display = 'none';
 	userAnswer = [0,0,0,0];
 	num = 0;
 	score = 0;
+	newNumSlide=0;*/
+	location.reload();
 });
 
 function startGame() {
@@ -128,12 +130,12 @@ function startGame() {
     chooseButton4.style.display = 'block';
     submitButton.style.display = 'block';
 
-
     chooseButton1.addEventListener('click',() => {
+    	clearTimeout(timer);
 	    event.preventDefault();
-	    userAnswer[index] = q[index].answer1;
+	    userAnswer[num] = q[num].answer1;
 
-	    if (userAnswer[index] === correctAnswer[index]) {
+	    if (userAnswer[num] === correctAnswer[num]) {
             answer1.style.color = 'Lightgreen';
 	        } else {
 	    	    answer1.style.color = 'red';
@@ -142,10 +144,11 @@ function startGame() {
     });
 
     chooseButton2.addEventListener('click',() => {
+    	clearTimeout(timer);
 	    event.preventDefault();
-	    userAnswer[index] = q[index].answer2;
+	    userAnswer[num] = q[num].answer2;
 
-	    if (userAnswer[index] === correctAnswer[index]) {
+	    if (userAnswer[num] === correctAnswer[num]) {
             answer2.style.color = 'Lightgreen';
 	        } else {
 	    	    answer2.style.color = 'red';
@@ -154,10 +157,11 @@ function startGame() {
     });
 
     chooseButton3.addEventListener('click',() => {
+    	clearTimeout(timer);
 	    event.preventDefault();
-	    userAnswer[index] = q[index].answer3;
+	    userAnswer[num] = q[num].answer3;
 	 
-        if (userAnswer[index] === correctAnswer[index]) {
+        if (userAnswer[num] === correctAnswer[num]) {
             answer3.style.color = 'Lightgreen';
 	        } else {
 	    	    answer3.style.color = 'red';
@@ -166,10 +170,11 @@ function startGame() {
     });
 
     chooseButton4.addEventListener('click',() => {
+    	clearTimeout(timer);
 	    event.preventDefault();
-	    userAnswer[index] = q[index].answer4;
+	    userAnswer[num] = q[num].answer4;
 	
-        if (userAnswer[index] === correctAnswer[index]) {
+        if (userAnswer[num] === correctAnswer[num]) {
             answer4.style.color = 'Lightgreen';
 	        } else {
 	    	    answer4.style.color = 'red';
@@ -183,11 +188,11 @@ function startGame() {
             num = 0;
         };
         console.log(num);
-        questions.innerHTML = q[index].question;
-        answers1.innerHTML = q[index].answer1;
-        answers2.innerHTML = q[index].answer2; 
-        answers3.innerHTML = q[index].answer3;
-        answers4.innerHTML = q[index].answer4;
+        questions.innerHTML = q[num].question;
+        answers1.innerHTML = q[num].answer1;
+        answers2.innerHTML = q[num].answer2; 
+        answers3.innerHTML = q[num].answer3;
+        answers4.innerHTML = q[num].answer4;
 
         timer = setTimeout(() =>{
     	noneButton();showResults();
@@ -200,6 +205,7 @@ function startGame() {
     let newNumSlide = 0;
 
     nextButton.addEventListener('click',() => {
+    	clearTimeout(timer);
 	    event.preventDefault();
 	    num++;
 	    newNumSlide=numSlide+1;
@@ -208,6 +214,7 @@ function startGame() {
     });
 
     previosButton.addEventListener('click',() => {
+    	clearTimeout(timer);
 	    event.preventDefault();
 	    newNumSlide=numSlide-1;
 	    num--; 
@@ -217,7 +224,6 @@ function startGame() {
 
     function showSlide() {
         numSlide=newNumSlide;
-
 	    if (numSlide === 0) {
 		    previosButton.style.display = 'none';
 	    } else {
@@ -238,7 +244,8 @@ function startGame() {
 
     submitButton.addEventListener('click',() => {
 	    event.preventDefault();
-        showResults();    
+        showResults(); 
+        restartButton.style.display = 'block';   
     });
 
     let correctAnswer1 = question1.answer3;
@@ -248,15 +255,8 @@ function startGame() {
 
     let correctAnswer = [correctAnswer1,correctAnswer2,correctAnswer3,correctAnswer4];
 
-    function checkResults() {   
-   /*for (num=0;num<4;num++) {
-	    if (userAnswer[num] === correctAnswer[num]) {
-		    score++ ;*/
-	    score = userAnswer.filter((item,index) => item == correctAnswer[index]).length;
-    };
-
     function showResults() {
-	    checkResults();
+	    score = userAnswer.filter((item,num) => item == correctAnswer[num]).length;
 	    let result = document.getElementById('result');
         result.innerHTML = ('Всего верных ответов:' + score);
     
