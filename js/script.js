@@ -27,8 +27,7 @@ fetch('https://opentdb.com/api.php?amount=10')
 	       answer1: incorrect[0].slice(1,2),
 	       answer2: correctAnswer[0],
 	       answer3: incorrect[0].slice(0,1),
-	       answer4: incorrect[0].splice(1,1)
-
+	       answer4: incorrect[0].slice(-1)
         };
         console.log(question1)
         const question2 = {
@@ -36,21 +35,21 @@ fetch('https://opentdb.com/api.php?amount=10')
 	        answer1: incorrect[1].slice(1,2),
 	        answer2: incorrect[1].slice(0,1),
 	        answer3: correctAnswer[1],
-	        answer4: incorrect[1].splice(1,1)
+	        answer4: incorrect[1].slice(-1)
         };
         const question3 = {
         	question: Q[2],
         	answer1: correctAnswer[2],
         	answer2: incorrect[2].slice(0,1),
             answer3: incorrect[2].slice(0,1),
-            answer4: incorrect[2].splice(1,1)
+            answer4: incorrect[2].slice(-1)
         }
         const question4 = {
         	question: Q[3],
         	answer1: incorrect[3].slice(1,2),
             answer2: correctAnswer[3],
 	        answer3: incorrect[3].slice(0,1),
-	        answer4: incorrect[3].splice(1,1)
+	        answer4: incorrect[3].slice(-1)
 
         }
        
