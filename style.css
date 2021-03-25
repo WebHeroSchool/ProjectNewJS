@@ -9,6 +9,10 @@
     border-radius: 5px;
 }
 
+.buttons {
+  text-align: center;
+}
+
 .btn {
     display: block;
     background-color: #04B4AE;
@@ -17,7 +21,7 @@
     font-size: 20px;
     margin-bottom: 20px;
     width: 200px;
-    margin: 0 0 20px 50px;
+    margin: 0 auto 20px auto;
 }
 
 .result {
@@ -26,9 +30,8 @@
     border-color: #0B3861;
     border-radius: 5px;
     font-size: 20px;
-    font-color: #FE9A2E;
-    margin-left: 85px;
-
+    font-color: #FE9A2E; 
+    margin: auto;  
 }
 
 .beginning {
@@ -60,4 +63,5 @@
   border-radius: 5px;
   font-size: 20px;
   width: 200px; 
-}
+  margin: 20% auto 0 auto;
+  }

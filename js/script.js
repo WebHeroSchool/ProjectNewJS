@@ -1,42 +1,39 @@
 const slides = document.getElementById ('slides');
+let userName;
 
 fetch('https://opentdb.com/api.php?amount=10')
     .then(res => res.json())
     .then(json => {
-    	console.log(json)
     	data = json.results
-    	console.log(data)
 
         let correctAnswer = data.map(function(item){
         	return item.correct_answer
         });
-        console.log(correctAnswer)
-
+     
         let Q = data.map(function(item) {
         	return item.question
         })
-        console.log(Q)
 
         let incorrect = data.map(function(item) {
         	return item.incorrect_answers
         })
-        console.log(incorrect)
- 
+
         const question1 = {
 	       question: Q[0],
 	       answer1: incorrect[0].slice(1,2),
 	       answer2: correctAnswer[0],
 	       answer3: incorrect[0].slice(0,1),
 	       answer4: incorrect[0].slice(-1)
-        };
-        console.log(question1)
+        }
+        
         const question2 = {
 	        question: Q[1],
 	        answer1: incorrect[1].slice(1,2),
 	        answer2: incorrect[1].slice(0,1),
 	        answer3: correctAnswer[1],
 	        answer4: incorrect[1].slice(-1)
-        };
+        }
+
         const question3 = {
         	question: Q[2],
         	answer1: correctAnswer[2],
@@ -44,16 +41,24 @@ fetch('https://opentdb.com/api.php?amount=10')
             answer3: incorrect[2].slice(0,1),
             answer4: incorrect[2].slice(-1)
         }
+
         const question4 = {
         	question: Q[3],
         	answer1: incorrect[3].slice(1,2),
             answer2: correctAnswer[3],
 	        answer3: incorrect[3].slice(0,1),
 	        answer4: incorrect[3].slice(-1)
+        }
 
+        const question5 = {
+        	question: Q[4],
+        	answer1: incorrect[4].slice(1,2),
+	        answer2: incorrect[4].slice(0,1),
+	        answer3: correctAnswer[4],
+	        answer4: incorrect[4].slice(-1)
         }
        
-        let q = [question1,question2,question3,question4];
+        let q = [question1,question2,question3,question4,question5];
 
         let questions = document.getElementById('question'); 
 
@@ -65,7 +70,7 @@ fetch('https://opentdb.com/api.php?amount=10')
         let num = 0;
         let score = 0;
 
-        let userAnswer = [0,0,0,0];
+        let userAnswer = [0,0,0,0,0];
 
         const chooseButton1 = document.getElementById('choose1');
         const chooseButton2 = document.getElementById('choose2');
@@ -100,6 +105,7 @@ fetch('https://opentdb.com/api.php?amount=10')
 
         form.addEventListener('submit',(event) => {
             console.log(name.value);
+            userName = name.value;
             let regex =/^[A-Z]{1}[a-z]{2,10}$/;
             name.classList.remove('error'); 
 
@@ -111,10 +117,10 @@ fetch('https://opentdb.com/api.php?amount=10')
     	        let error = document.createElement('div');
     	        error.className = 'error_block';
     	        error.style.color = 'red';
-    	        error.innerHTML = 'Укажите имя правильно';
+    	        error.innerHTML = 'Enter the name correctly';
     	        name.parentElement.insertBefore(error,name);
             }
-        });
+        })
 
         function onButton() {
 	        button.forEach((item) => {
@@ -123,13 +129,13 @@ fetch('https://opentdb.com/api.php?amount=10')
 	        answer1.style.color =  'black' ;
 	        answer2.style.color =  'black' ;
 	        answer3.style.color =  'black' ;
-	        answers4.style.color =  'black' ;
-        };
+	        answer4.style.color =  'black' ;
+        }
 
         restartButton.addEventListener ('click',() => {
 	        event.preventDefault();
 	        location.reload();
-        });
+        })
 
         function startGame() {
             clearTimeout(timer);
@@ -154,7 +160,7 @@ fetch('https://opentdb.com/api.php?amount=10')
 	    	            answer1.style.color = 'red';
 	            };
 	            noneButton()
-            });
+            })
 
             chooseButton2.addEventListener('click',() => {
     	        clearTimeout(timer);
@@ -195,23 +201,6 @@ fetch('https://opentdb.com/api.php?amount=10')
 	            noneButton();
             });
 
-   /* let chooseButton = [chooseButton1,chooseButton2,chooseButton3,chooseButton4];
-
-    chooseButton.forEach((item)=>{
-    	item.addEventListener('click',()=>{
-    		clearTimeout(timer);
-	        event.preventDefault();
-	        userAnswer[num] = q[num].answer[num];
-	
-            if (userAnswer[num] === correctAnswer[num]) {
-            answer[num].style.color = 'Lightgreen';
-	        } else {
-	    	    answer[num].style.color = 'red';
-	        };
-	        noneButton();
-
-    	});
-    });*/
 
             buildQuiz =(q) => {  
 
@@ -227,6 +216,19 @@ fetch('https://opentdb.com/api.php?amount=10')
                 timer = setTimeout(() =>{
     	        noneButton();showResults();
     	        restartButton.style.display = 'block';
+    	        nextButton.style.display = 'none';
+                previosButton.style.display = 'none';
+                chooseButton1.style.display = 'none';
+                chooseButton2.style.display = 'none';
+                chooseButton3.style.display = 'none';
+                chooseButton4.style.display = 'none';
+                submitButton.style.display = 'none';
+                questions.style.display = 'none';
+                answer1.style.display = 'none';
+                answer2.style.display = 'none';
+                answer3.style.display = 'none';
+                answer4.style.display = 'none';
+
                 },10000);
 
             };
@@ -275,14 +277,28 @@ fetch('https://opentdb.com/api.php?amount=10')
              submitButton.addEventListener('click',() => {
 	            event.preventDefault();
                 showResults(); 
-                restartButton.style.display = 'block';   
+                restartButton.style.display = 'block'; 
+                nextButton.style.display = 'none';
+                previosButton.style.display = 'none';
+                chooseButton1.style.display = 'none';
+                chooseButton2.style.display = 'none';
+                chooseButton3.style.display = 'none';
+                chooseButton4.style.display = 'none';
+                submitButton.style.display = 'none';
+                questions.style.display = 'none';
+                answer1.style.display = 'none';
+                answer2.style.display = 'none';
+                answer3.style.display = 'none';
+                answer4.style.display = 'none';
+  
             });
 
    
             function showResults() {
 	            score = userAnswer.filter((item,num) => item == correctAnswer[num]).length;
 	            let result = document.getElementById('result');
-                result.innerHTML = ('Всего верных ответов:' + score);
+	            console.log(userName);
+                result.innerHTML = (userName+', game over, your winnings,' + score);
             };
 
             function noneButton() {
